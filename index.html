@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+html{color-scheme:light}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>Santiago Fernández Finanzas</title>
+<meta name="description" content="Planeación patrimonial para personas y modelos financieros para empresas. Santiago Fernández.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: una sola columna editorial; el "estado de cuenta" del hero a la derecha en escritorio,
+   después dos bandas (Personas / Empresas) con el mismo esqueleto, y cierre con contacto. */
+:root {
+  --bg: #F1F4F0;
+  --surface: #FFFFFF;
+  --ink: #12201B;
+  --muted: #56665F;
+  --line: #D5DDD7;
+  --green: #1D6B47;
+  --green-soft: #DCEBE2;
+  --amber: #C98A12;
+  --band: #E5ECE6;
+  --on-green: #FFFFFF;
+  --f-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Instrument Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --f-num: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1512; --surface: #15201B; --ink: #E6EEE9; --muted: #9AABA3; --line: #26352E;
+    --green: #4FBF88; --green-soft: #1A3329; --amber: #F0BE57; --band: #121C18; --on-green: #08130E;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1512; --surface: #15201B; --ink: #E6EEE9; --muted: #9AABA3; --line: #26352E;
+  --green: #4FBF88; --green-soft: #1A3329; --amber: #F0BE57; --band: #121C18; --on-green: #08130E;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 17px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+.wrap {
+  max-width: 1080px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--f-display); line-height: 1.08; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+p { margin: 0; }
+.eyebrow {
+  font-family: var(--f-num); font-size: 12.5px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--green); font-weight: 500;
+}
+.num { font-family: var(--f-num); font-variant-numeric: tabular-nums; }
+
+/* Top bar */
+.top { padding-block: 22px; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.mono-mark {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--ink); color: var(--bg); font-family: var(--f-display); font-weight: 800; font-size: 15px;
+}
+.brand b { font-family: var(--f-display); font-weight: 700; font-size: 17px; display: block; line-height: 1.1; }
+.brand small { color: var(--muted); font-size: 13px; }
+.nav { display: flex; gap: 20px; font-size: 15px; }
+.nav a { text-decoration: none; color: var(--muted); }
+.nav a:hover { color: var(--ink); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+  font-weight: 600; font-size: 16px; padding: 14px 22px; border-radius: 999px;
+  border: 1.5px solid var(--ink); transition: transform .15s ease, background .15s ease;
+}
+.btn-primary { background: var(--green); border-color: var(--green); color: var(--on-green); }
+.btn-ghost { color: var(--ink); background: transparent; }
+.btn:hover { transform: translateY(-1px); }
+.btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+.btn .arr { font-family: var(--f-num); }
+
+/* Hero */
+.hero { padding-block: 28px 72px; }
+.hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+.hero h1 { font-size: clamp(40px, 6.2vw, 74px); font-weight: 800; margin-top: 14px; }
+.hero h1 em { font-style: normal; color: var(--green); }
+.hero .lead { color: var(--muted); font-size: 19px; max-width: 34ch; margin-top: 22px; }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.flags { margin-top: 26px; color: var(--muted); font-size: 14px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.flags span.tag { border: 1px solid var(--line); border-radius: 999px; padding: 3px 11px; font-family: var(--f-num); font-size: 12.5px; }
+
+/* Statement card (hero) */
+.statement {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+  padding: 26px 26px 20px; box-shadow: 0 24px 60px -36px rgba(18, 32, 27, .45);
+}
+.statement .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.statement .label { font-size: 13px; color: var(--muted); }
+.statement .big { font-family: var(--f-num); font-size: clamp(34px, 4.4vw, 44px); font-weight: 500; letter-spacing: -0.02em; }
+.pill { font-family: var(--f-num); font-size: 13px; background: var(--green-soft); color: var(--green); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.statement svg { width: 100%; height: auto; display: block; margin-top: 14px; }
+.ledger { margin-top: 12px; border-top: 1px dashed var(--line); padding-top: 12px; display: grid; gap: 6px; font-size: 14px; }
+.ledger div { display: flex; justify-content: space-between; gap: 12px; }
+.ledger dt, .ledger dd { margin: 0; }
+.ledger dd { font-family: var(--f-num); font-variant-numeric: tabular-nums; }
+.fine { font-size: 12px; color: var(--muted); margin-top: 12px; line-height: 1.45; }
+
+/* Bands */
+.band { background: var(--band); padding-block: 84px; }
+.plain { padding-block: 84px; }
+.section-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 44px; }
+.section-head h2 { font-size: clamp(32px, 4.4vw, 50px); font-weight: 800; margin-top: 12px; }
+.section-head p { color: var(--muted); max-width: 46ch; }
+
+.offers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.offer {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 26px; display: flex; flex-direction: column; gap: 12px; min-width: 0;
+}
+.offer h3 { font-size: 22px; font-weight: 700; }
+.offer p { color: var(--muted); font-size: 15.5px; }
+.offer .meta { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); font-family: var(--f-num); font-size: 13px; color: var(--ink); display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.offer .meta a { color: var(--green); text-decoration: none; font-weight: 500; }
+.offer.featured { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.offer.featured p { color: color-mix(in srgb, var(--bg) 78%, transparent); }
+.offer.featured .meta { border-color: color-mix(in srgb, var(--bg) 22%, transparent); color: var(--bg); }
+.offer.featured .meta a { color: var(--amber); }
+
+/* Compound tool */
+.tool {
+  margin-top: 44px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+  display: grid; grid-template-columns: 1fr 1fr; overflow: hidden;
+}
+.tool-in { padding: 30px; display: grid; gap: 22px; border-right: 1px solid var(--line); min-width: 0; }
+.tool-out { padding: 30px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.tool h3 { font-size: 24px; font-weight: 700; }
+.field label { display: flex; justify-content: space-between; font-size: 15px; font-weight: 500; margin-bottom: 8px; gap: 12px; }
+.field label output { font-family: var(--f-num); color: var(--green); font-weight: 500; }
+input[type=range] { width: 100%; accent-color: var(--green); }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  font: 500 14px var(--f-num); padding: 7px 13px; border-radius: 999px; cursor: pointer;
+  background: transparent; color: var(--ink); border: 1px solid var(--line);
+}
+.chip[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: var(--on-green); }
+.tool-out .total { font-family: var(--f-num); font-size: clamp(36px, 5vw, 52px); font-weight: 500; letter-spacing: -0.02em; line-height: 1; }
+.split { display: flex; height: 12px; border-radius: 999px; overflow: hidden; background: var(--line); }
+.split i { display: block; height: 100%; }
+.split .c { background: var(--muted); }
+.split .g { background: var(--green); }
+.legend { display: grid; gap: 6px; font-size: 14px; }
+.legend div { display: flex; justify-content: space-between; gap: 12px; }
+.legend span:first-child { display: inline-flex; align-items: center; gap: 8px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+/* Services list (empresas) */
+.services { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 48px; border-top: 1px solid var(--line); }
+.service { padding: 26px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr; gap: 6px; min-width: 0; }
+.service h3 { font-size: 21px; font-weight: 700; }
+.service .q { font-family: var(--f-display); color: var(--green); font-weight: 500; font-size: 16px; }
+.service p { color: var(--muted); font-size: 15.5px; }
+.proof { margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.proof div { border-left: 2px solid var(--green); padding-left: 16px; }
+.proof strong { font-family: var(--f-num); font-weight: 500; font-size: 26px; display: block; letter-spacing: -0.01em; }
+.proof span { color: var(--muted); font-size: 14.5px; }
+.b2b-ctas { margin-top: 40px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* Steps */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; counter-reset: s; }
+.step { border-top: 2px solid var(--ink); padding-top: 18px; }
+.step .n { font-family: var(--f-num); font-size: 13px; color: var(--muted); }
+.step h3 { font-size: 21px; margin-top: 8px; }
+.step p { color: var(--muted); font-size: 15.5px; margin-top: 8px; }
+
+/* About */
+.about { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: start; }
+.about h2 { font-size: clamp(30px, 4vw, 44px); font-weight: 800; margin-top: 12px; }
+.about p + p { margin-top: 14px; }
+.about .text { color: var(--muted); }
+.creds { list-style: none; padding: 0; margin: 26px 0 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.creds li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; }
+.creds li span:last-child { color: var(--muted); text-align: right; }
+
+/* Contact */
+.contact { background: var(--ink); color: var(--bg); padding-block: 84px; }
+.contact h2 { font-size: clamp(34px, 5vw, 58px); font-weight: 800; max-width: 18ch; }
+.contact p { color: color-mix(in srgb, var(--bg) 75%, transparent); margin-top: 18px; max-width: 48ch; }
+.contact .eyebrow { color: var(--amber); }
+.contact-grid { margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.c-card {
+  border: 1px solid color-mix(in srgb, var(--bg) 22%, transparent); border-radius: 14px; padding: 20px;
+  text-decoration: none; display: grid; gap: 4px; min-width: 0;
+}
+.c-card:hover { border-color: var(--amber); }
+.c-card small { font-family: var(--f-num); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--amber); }
+.c-card b { font-family: var(--f-display); font-size: 20px; font-weight: 700; }
+.c-card .addr { font-family: var(--f-num); font-size: 14px; overflow-wrap: anywhere; user-select: all; }
+.copy { justify-self: start; margin-top: 8px; font: 500 13px var(--f-num); background: transparent; color: var(--bg); border: 1px solid color-mix(in srgb, var(--bg) 35%, transparent); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+.copy:hover { border-color: var(--amber); }
+
+footer { padding-block: 28px; font-size: 13px; color: var(--muted); }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+footer p { max-width: 70ch; }
+
+@media (max-width: 860px) {
+  .hero .wrap, .section-head, .about, .tool { grid-template-columns: 1fr; }
+  .tool-in { border-right: 0; border-bottom: 1px solid var(--line); }
+  .offers, .proof, .steps, .contact-grid { grid-template-columns: 1fr; }
+  .services { grid-template-columns: 1fr; }
+  .nav { display: none; }
+  .hero { padding-block: 8px 56px; }
+  .band, .plain, .contact { padding-block: 60px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .curve { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 1.6s .2s ease-out forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Santiago Fernández, inicio">
+      <span class="mono-mark">SF</span>
+      <span><b>Santiago Fernández</b><small>Wealth planning · Modelos financieros</small></span>
+    </a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#personas">Personas</a>
+      <a href="#empresas">Empresas</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Finanzas personales y de negocio</p>
+        <h1>Haz crecer tu patrimonio con <em>números claros</em>.</h1>
+        <p class="lead">Te ayudo a invertir con un plan, prepararte para el retiro y entender a dónde puede llegar tu dinero.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="https://cuanto-tendrias.streamlit.app" target="_blank" rel="noopener">Prueba la calculadora gratis <span class="arr">→</span></a>
+          <a class="btn btn-ghost" href="#contacto">Quiero mi plan</a>
+        </div>
+        <div class="flags"><span>Asesoría en línea para</span><span class="tag">AR</span><span class="tag">MX</span><span class="tag">PE</span><span class="tag">CO</span></div>
+      </div>
+
+      <figure class="statement" aria-label="Ejemplo de simulación histórica" style="margin:0">
+        <div class="row"><span class="label">Si hubieras invertido US$10,000 hace 5 años</span></div>
+        <div class="row" style="margin-top:6px"><span class="big">US$21,183</span><span class="pill">+111.8%</span></div>
+        <svg viewBox="0 0 320 120" role="img" aria-label="Curva de crecimiento de 10,000 a 21,183 dólares en cinco años">
+          <defs>
+            <linearGradient id="fillg" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" style="stop-color:var(--green);stop-opacity:.22"/>
+              <stop offset="1" style="stop-color:var(--green);stop-opacity:0"/>
+            </linearGradient>
+          </defs>
+          <g style="stroke:var(--line)" stroke-width="1">
+            <line x1="8" y1="104" x2="312" y2="104"/>
+            <line x1="8" y1="64" x2="312" y2="64" stroke-dasharray="3 4"/>
+            <line x1="8" y1="24" x2="312" y2="24" stroke-dasharray="3 4"/>
+          </g>
+          <path id="area" fill="url(#fillg)" d=""/>
+          <path id="curve" class="curve" fill="none" style="stroke:var(--green)" stroke-width="3" stroke-linecap="round" d=""/>
+          <circle id="end" r="5.5" style="fill:var(--amber)" cx="0" cy="0"/>
+          <g font-family="IBM Plex Mono, monospace" font-size="10" style="fill:var(--muted)">
+            <text x="8" y="117">2021</text>
+            <text x="312" y="117" text-anchor="end">2026</text>
+          </g>
+        </svg>
+        <dl class="ledger">
+          <div><dt>Mezcla</dt><dd>S&amp;P 500 · Oro · Bonos EE.UU.</dd></div>
+          <div><dt>Rendimiento anual compuesto</dt><dd>16.2%</dd></div>
+          <div><dt>Periodo</dt><dd>oct 2021 – oct 2026</dd></div>
+        </dl>
+        <figcaption class="fine">Simulación histórica con precios reales y la mezcla de mejor riesgo-rendimiento (Markowitz). La curva es ilustrativa del ritmo compuesto. Rendimientos pasados no garantizan rendimientos futuros.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="band" id="personas">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Para personas</p>
+          <h2>Tu dinero, con un plan.</h2>
+        </div>
+        <p>Empieza gratis viendo cómo se habría comportado tu dinero. Si quieres ir más allá, armamos juntos un plan para tus metas.</p>
+      </div>
+
+      <div class="offers">
+        <article class="offer featured">
+          <p class="eyebrow" style="color:var(--amber)">Gratis</p>
+          <h3>¿Cuánto tendrías hoy?</h3>
+          <p>Elige activos y años. La calculadora prueba miles de combinaciones y te muestra la de mejor balance entre riesgo y rendimiento.</p>
+          <div class="meta"><span>2 minutos</span><a href="https://cuanto-tendrias.streamlit.app" target="_blank" rel="noopener">Abrir calculadora →</a></div>
+        </article>
+        <article class="offer">
+          <p class="eyebrow">Plan personalizado</p>
+          <h3>Plan de inversión</h3>
+          <p>Definimos cuánto invertir, en qué y con qué riesgo, según tus ingresos, tus metas y el país donde vives.</p>
+          <div class="meta"><span>Sesión 1 a 1</span><a href="#contacto">Pedir info →</a></div>
+        </article>
+        <article class="offer">
+          <p class="eyebrow">Largo plazo</p>
+          <h3>Plan de retiro</h3>
+          <p>Calculamos cuánto necesitas para retirarte y cuánto ahorrar al mes para llegar, con escenarios conservador y optimista.</p>
+          <div class="meta"><span>Sesión 1 a 1</span><a href="#contacto">Pedir info →</a></div>
+        </article>
+      </div>
+
+      <div class="tool" aria-labelledby="tool-title">
+        <div class="tool-in">
+          <div>
+            <p class="eyebrow">Interés compuesto</p>
+            <h3 id="tool-title" style="margin-top:8px">Si ahorras cada mes…</h3>
+          </div>
+          <div class="field">
+            <label for="monthly">Ahorro mensual <output id="monthly-out" class="num">US$200</output></label>
+            <input id="monthly" type="range" min="50" max="2000" step="50" value="200">
+          </div>
+          <div class="field">
+            <label for="years">Años <output id="years-out" class="num">20</output></label>
+            <input id="years" type="range" min="1" max="40" step="1" value="20">
+          </div>
+          <div class="field">
+            <label id="rate-label">Rendimiento anual supuesto</label>
+            <div class="chips" role="group" aria-labelledby="rate-label">
+              <button type="button" class="chip" data-rate="0.05" aria-pressed="false">5%</button>
+              <button type="button" class="chip" data-rate="0.07" aria-pressed="true">7%</button>
+              <button type="button" class="chip" data-rate="0.10" aria-pressed="false">10%</button>
+            </div>
+          </div>
+        </div>
+        <div class="tool-out" aria-live="polite">
+          <span class="label" style="color:var(--muted);font-size:14px">Tendrías aproximadamente</span>
+          <span class="total" id="total">US$0</span>
+          <div class="split" aria-hidden="true"><i class="c" id="bar-c"></i><i class="g" id="bar-g"></i></div>
+          <div class="legend">
+            <div><span><i class="dot" style="background:var(--muted)"></i>Lo que tú aportaste</span><span class="num" id="contrib">US$0</span></div>
+            <div><span><i class="dot" style="background:var(--green)"></i>Lo que generó el interés</span><span class="num" id="growth">US$0</span></div>
+          </div>
+          <p class="fine">Ejemplo ilustrativo con rendimiento fijo y aportes a fin de mes. Los mercados reales suben y bajan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="plain" id="empresas">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Para empresas y emprendedores</p>
+          <h2>Decide con un modelo, no con intuición.</h2>
+        </div>
+        <p>Modelos en Excel que conectan ventas, costos y caja, para saber cuánto capital necesitas, cuánto vale tu negocio y si un proyecto conviene.</p>
+      </div>
+
+      <div class="services">
+        <div class="service">
+          <span class="q">¿Cuánto capital necesito y cuándo?</span>
+          <h3>Modelos financieros y flujo de efectivo</h3>
+          <p>Proyecciones de 3 estados financieros con escenarios para anticipar necesidades de caja.</p>
+        </div>
+        <div class="service">
+          <span class="q">¿Cuánto vale mi negocio?</span>
+          <h3>Valuación de empresas</h3>
+          <p>Un rango de valor sustentado en supuestos y escenarios, útil para negociar con inversionistas.</p>
+        </div>
+        <div class="service">
+          <span class="q">¿Conviene abrir, ampliar o invertir?</span>
+          <h3>Evaluación de proyectos</h3>
+          <p>Rentabilidad, financiamiento, recuperación y riesgos antes de comprometer capital.</p>
+        </div>
+        <div class="service">
+          <span class="q">¿Puedo automatizar esto?</span>
+          <h3>Python y análisis cuantitativo</h3>
+          <p>Automatización de datos financieros, simulaciones y modelos de optimización.</p>
+        </div>
+      </div>
+
+      <div class="proof">
+        <div><strong>US$260M</strong><span>en escenarios de EBITDA modelados</span></div>
+        <div><strong>5 años</strong><span>de pro formas con fases de inversión en CAPEX</span></div>
+        <div><strong>Excel + Python</strong><span>modelo editable y explicación de los resultados</span></div>
+      </div>
+
+      <div class="b2b-ctas">
+        <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01df4bba5de2483aa6" target="_blank" rel="noopener">Contratar por Upwork <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="#contacto">Escribirme directo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Cómo trabajamos</p>
+          <h2>Tres pasos, sin letra chiquita.</h2>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="n">Paso 1</span><h3>Conversamos</h3><p>Me cuentas tu meta o tu decisión y revisamos la información que tienes.</p></div>
+        <div class="step"><span class="n">Paso 2</span><h3>Propuesta clara</h3><p>Recibes alcance, entregables, plazo y honorarios antes de empezar.</p></div>
+        <div class="step"><span class="n">Paso 3</span><h3>Plan o modelo listo</h3><p>Construyo el análisis y te explico cómo usarlo para decidir.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="plain" id="sobre-mi">
+    <div class="wrap about">
+      <div>
+        <p class="eyebrow">Sobre mí</p>
+        <h2>Santiago Fernández Hernández</h2>
+      </div>
+      <div>
+        <div class="text">
+          <p>Estoy lanzando una consultoría financiera para empresas y emprendedores: modelos financieros, valuación y evaluación de proyectos para que cada decisión importante tenga números detrás.</p>
+          <p>En paralelo ayudo a personas a ordenar e invertir su dinero con un plan claro, desde el primer ahorro hasta el retiro.</p>
+        </div>
+        <ul class="creds">
+          <li><span>Maestría en Ingeniería Financiera</span><span>Ibero Puebla</span></li>
+          <li><span>Financial Modeling &amp; Valuation Analyst (FMVA)</span><span>CFI</span></li>
+          <li><span>Certificación AMIB</span><span>México</span></li>
+          <li><span>Lic. en Administración de Empresas</span><span>Ibero Puebla · UCM Madrid</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <div class="wrap">
+      <p class="eyebrow">Contacto</p>
+      <h2 style="margin-top:12px">Cuéntame qué quieres lograr.</h2>
+      <p>Escríbeme por donde te quede más cómodo. Te respondo para entender tu caso y proponerte los siguientes pasos.</p>
+      <div class="contact-grid">
+        <a class="c-card" href="https://www.upwork.com/freelancers/~01df4bba5de2483aa6" target="_blank" rel="noopener">
+          <small>Upwork</small><b>Contrátame</b><span class="addr">Ver perfil en Upwork</span>
+        </a>
+        <div class="c-card">
+          <small>Correo</small><b>Escríbeme</b><span class="addr" id="email">santiagofdzhdz@gmail.com</span>
+          <button type="button" class="copy" id="copy-email">Copiar correo</button>
+        </div>
+        <a class="c-card" href="https://www.linkedin.com/in/santiago-fernandez-hernandez" target="_blank" rel="noopener">
+          <small>LinkedIn</small><b>Conectemos</b><span class="addr">santiago-fernandez-hernandez</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Santiago Fernández</span>
+    <p>Contenido y herramientas con fines educativos. No constituye recomendación de inversión personalizada. Rendimientos pasados no garantizan rendimientos futuros.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Curva del hero: crecimiento compuesto de 10,000 a 21,183 en 5 años
+  var start = 10000, end = 21183, years = 5;
+  var cagr = Math.pow(end / start, 1 / years) - 1;
+  var x0 = 8, x1 = 312, yMin = 8000, yMax = 23000, top = 8, bottom = 104;
+  function y(v) { return bottom - (v - yMin) / (yMax - yMin) * (bottom - top); }
+  var pts = [];
+  for (var i = 0; i <= 50; i++) {
+    var t = i / 50 * years;
+    pts.push([x0 + (x1 - x0) * i / 50, y(start * Math.pow(1 + cagr, t))]);
+  }
+  var d = pts.map(function (p, i) { return (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1); }).join(' ');
+  document.getElementById('curve').setAttribute('d', d);
+  document.getElementById('area').setAttribute('d', d + ' L' + x1 + ' ' + bottom + ' L' + x0 + ' ' + bottom + ' Z');
+  var last = pts[pts.length - 1];
+  var dot = document.getElementById('end');
+  dot.setAttribute('cx', last[0]); dot.setAttribute('cy', last[1]);
+
+  // Calculadora de interés compuesto
+  var fmt = function (n) { return 'US$' + Math.round(n).toLocaleString('en-US'); };
+  var monthly = document.getElementById('monthly');
+  var yrs = document.getElementById('years');
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var rate = 0.07;
+
+  function calc() {
+    var m = +monthly.value, n = +yrs.value * 12, r = rate / 12;
+    var fv = r === 0 ? m * n : m * (Math.pow(1 + r, n) - 1) / r;
+    var contrib = m * n, growth = Math.max(0, fv - contrib);
+    document.getElementById('monthly-out').textContent = fmt(m);
+    document.getElementById('years-out').textContent = yrs.value;
+    document.getElementById('total').textContent = fmt(fv);
+    document.getElementById('contrib').textContent = fmt(contrib);
+    document.getElementById('growth').textContent = fmt(growth);
+    document.getElementById('bar-c').style.width = (contrib / fv * 100) + '%';
+    document.getElementById('bar-g').style.width = (growth / fv * 100) + '%';
+  }
+  monthly.addEventListener('input', calc);
+  yrs.addEventListener('input', calc);
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      chips.forEach(function (o) { o.setAttribute('aria-pressed', 'false'); });
+      c.setAttribute('aria-pressed', 'true');
+      rate = +c.dataset.rate;
+      calc();
+    });
+  });
+  calc();
+
+  // Copiar correo
+  var btn = document.getElementById('copy-email');
+  btn.addEventListener('click', function () {
+    var text = document.getElementById('email').textContent;
+    function selectIt() {
+      var range = document.createRange(); range.selectNodeContents(document.getElementById('email'));
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      btn.textContent = 'Selecciónalo y copia';
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copiado'; }, selectIt);
+    } catch (e) { selectIt(); }
+  });
+})();
+</script>
+</body>
+</html>
