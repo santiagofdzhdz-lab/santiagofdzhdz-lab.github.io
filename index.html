@@ -214,6 +214,39 @@ footer { padding-block: 28px; font-size: 13px; color: var(--muted); }
 footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 footer p { max-width: 70ch; }
 
+/* Proyectos */
+.cases { display: grid; gap: 22px; }
+.case {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
+  display: grid; grid-template-columns: 1.25fr 1fr; min-width: 0;
+}
+.case-media { background: var(--band); padding: 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.case-media a { display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+.case-media img { display: block; width: 100%; height: auto; }
+.thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.case-body { padding: 28px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.case-body h3 { font-size: 24px; font-weight: 700; }
+.case-body p { color: var(--muted); font-size: 15.5px; }
+.tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.kind { font-family: var(--f-num); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; background: var(--green-soft); color: var(--green); }
+.kind.alt { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+.figs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 4px; padding-top: 14px; border-top: 1px solid var(--line); }
+.figs strong { font-family: var(--f-num); font-weight: 500; font-size: 22px; display: block; letter-spacing: -0.01em; }
+.figs span { color: var(--muted); font-size: 13.5px; line-height: 1.4; display: block; }
+.case-links { margin-top: auto; padding-top: 6px; display: flex; gap: 16px; flex-wrap: wrap; font-size: 15px; }
+.case-links a { color: var(--green); font-weight: 600; text-decoration: none; }
+.models { margin-top: 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.model { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.model h3 { font-size: 19px; font-weight: 700; }
+.model p { color: var(--muted); font-size: 14.5px; }
+.model .hl { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); }
+.model .hl strong { font-family: var(--f-num); font-weight: 500; font-size: 24px; display: block; }
+.model .hl span { color: var(--muted); font-size: 13px; }
+@media (max-width: 860px) {
+  .case { grid-template-columns: 1fr; }
+  .models { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 860px) {
   .hero .wrap, .section-head, .about, .tool { grid-template-columns: 1fr; }
   .tool-in { border-right: 0; border-bottom: 1px solid var(--line); }
@@ -239,6 +272,7 @@ footer p { max-width: 70ch; }
     <nav class="nav" aria-label="Secciones">
       <a href="#personas">Personas</a>
       <a href="#empresas">Empresas</a>
+      <a href="#proyectos">Proyectos</a>
       <a href="#sobre-mi">Sobre mí</a>
       <a href="#contacto">Contacto</a>
     </nav>
@@ -402,6 +436,99 @@ footer p { max-width: 70ch; }
       <div class="b2b-ctas">
         <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01df4bba5de2483aa6" target="_blank" rel="noopener">Contratar por Upwork <span class="arr">→</span></a>
         <a class="btn btn-ghost" href="#contacto">Escribirme directo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="plain" id="proyectos">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Proyectos</p>
+          <h2>Así se ve el trabajo terminado.</h2>
+        </div>
+        <p>Un caso con cliente, una herramienta propia y modelos de muestra de lo que puedo construir para tu negocio.</p>
+      </div>
+
+      <div class="cases">
+        <article class="case">
+          <div class="case-media">
+            <a href="img/joyeria_p2.jpg" target="_blank" rel="noopener"><img src="img/joyeria_p2.jpg" alt="Conclusión del modelo: capital necesario, utilidad acumulada y ventas de equilibrio" loading="lazy"></a>
+            <div class="thumbs">
+              <a href="img/joyeria_p4.jpg" target="_blank" rel="noopener"><img src="img/joyeria_p4.jpg" alt="Margen por gramo de oro 10k y 14k" loading="lazy"></a>
+              <a href="img/joyeria_p6.jpg" target="_blank" rel="noopener"><img src="img/joyeria_p6.jpg" alt="Resultados a 5 años en tres escenarios" loading="lazy"></a>
+              <a href="img/joyeria_p8.jpg" target="_blank" rel="noopener"><img src="img/joyeria_p8.jpg" alt="Punto de equilibrio mensual" loading="lazy"></a>
+            </div>
+          </div>
+          <div class="case-body">
+            <div class="tag-row"><span class="kind">Cliente</span><span class="kind alt">Retail · México</span></div>
+            <h3>Joyería de oro 10k y 14k</h3>
+            <p>Modelo financiero a 5 años para abrir una joyería: inventario en gramos, IVA, flujo de efectivo, balance, punto de equilibrio y VPN/TIR en tres escenarios, con presentación de resultados.</p>
+            <div class="figs">
+              <div><strong>~45% menos</strong><span>capital inicial: con $460–540 mil en lugar de $922 mil el negocio gana lo mismo</span></div>
+              <div><strong>3</strong><span>escenarios y punto de equilibrio para fijar la meta de ventas</span></div>
+            </div>
+            <p class="fine" style="margin-top:0">Cifras en MXN. Datos del cliente presentados sin nombre.</p>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-media">
+            <a href="https://cuanto-tendrias.streamlit.app" target="_blank" rel="noopener"><img src="img/markowitz.jpg" alt="Simulador: valor final, rendimiento, volatilidad y frontera eficiente" loading="lazy"></a>
+          </div>
+          <div class="case-body">
+            <div class="tag-row"><span class="kind">Herramienta propia</span><span class="kind alt">Python</span></div>
+            <h3>Simulador de portafolio Markowitz</h3>
+            <p>App web en Python que baja precios reales, simula miles de portafolios por Monte Carlo y encuentra la mezcla con mejor relación riesgo-rendimiento (Sharpe).</p>
+            <div class="figs">
+              <div><strong>20,000</strong><span>combinaciones simuladas en la versión completa</span></div>
+              <div><strong>12</strong><span>activos: acciones, ETFs, oro, bonos y cripto</span></div>
+            </div>
+            <div class="case-links">
+              <a href="https://cuanto-tendrias.streamlit.app" target="_blank" rel="noopener">Probar la app →</a>
+              <a href="https://github.com/santiagofdzhdz-lab/markowitz-portfolio-optimization" target="_blank" rel="noopener">Ver código →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="models">
+        <article class="model">
+          <div class="tag-row"><span class="kind alt">Modelo de muestra</span></div>
+          <h3>Valuación DCF</h3>
+          <p>Empresa pública de ropa deportiva: modelo de 3 estados, WACC por CAPM y valor terminal con tablas de sensibilidad.</p>
+          <div class="hl"><strong>US$142.4B</strong><span>valor empresa · precio implícito US$88.07</span></div>
+        </article>
+        <article class="model">
+          <div class="tag-row"><span class="kind alt">Modelo de muestra</span></div>
+          <h3>LBO + asignación del precio</h3>
+          <p>Compra apalancada con 4 tramos de deuda, cash sweep, PIK y sensibilidades de retorno por múltiplo de entrada y salida.</p>
+          <div class="hl"><strong>9.7% TIR</strong><span>1.6x MoM · deuda de 7.3x a 4.2x EBITDA</span></div>
+        </article>
+        <article class="model">
+          <div class="tag-row"><span class="kind alt">Modelo de muestra</span></div>
+          <h3>Comparables de mercado</h3>
+          <p>Múltiplos EV/Ventas, EV/EBITDA y P/E contra cuatro competidores, resumidos en un football field.</p>
+          <div class="hl"><strong>US$48–147</strong><span>rango de precio por acción (percentil 25–75)</span></div>
+        </article>
+        <article class="model">
+          <div class="tag-row"><span class="kind alt">Modelo de muestra</span></div>
+          <h3>Transacciones precedentes</h3>
+          <p>Seis adquisiciones del sector ropa y consumo con sus múltiplos y primas pagadas, comparadas con las demás metodologías.</p>
+          <div class="hl"><strong>6 deals</strong><span>múltiplos y primas de control</span></div>
+        </article>
+        <article class="model">
+          <div class="tag-row"><span class="kind alt">Modelo de muestra</span></div>
+          <h3>Agronegocio: 3 estados + DCF</h3>
+          <p>Proyecciones a 5 años con fases de inversión en CAPEX, escenarios de EBITDA y valuación por flujos descontados.</p>
+          <div class="hl"><strong>5 años</strong><span>pro forma con escenarios base, alto y bajo</span></div>
+        </article>
+        <article class="model">
+          <div class="tag-row"><span class="kind alt">Producto</span></div>
+          <h3>Flujo de caja a 13 semanas</h3>
+          <p>Plantilla para anticipar faltantes de caja semana a semana, con línea de crédito automática y seguimiento de reales.</p>
+          <div class="hl"><strong>13 semanas</strong><span>alertas de faltante y uso de crédito</span></div>
+        </article>
       </div>
     </div>
   </section>
