@@ -176,6 +176,16 @@ input[type=range] { width: 100%; accent-color: var(--green); }
 .proof strong { font-family: var(--f-num); font-weight: 500; font-size: 26px; display: block; letter-spacing: -0.01em; }
 .proof span { color: var(--muted); font-size: 14.5px; }
 .b2b-ctas { margin-top: 40px; display: flex; gap: 12px; flex-wrap: wrap; }
+.catalog { margin-top: 56px; }
+.catalog-head h3 { font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-top: 8px; }
+.mtypes { list-style: none; padding: 0; margin: 24px 0 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.mtypes li { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 6px; min-width: 0; transition: border-color .15s ease; }
+.mtypes li:hover { border-color: var(--green); }
+.mtypes .i { font-family: var(--f-num); font-size: 12.5px; color: var(--green); }
+.mtypes b { font-family: var(--f-display); font-size: 17px; font-weight: 700; line-height: 1.2; }
+.mtypes li span:last-child { color: var(--muted); font-size: 14px; line-height: 1.45; }
+@media (max-width: 1000px) { .mtypes { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .mtypes { grid-template-columns: repeat(2, 1fr); gap: 10px; } .mtypes li { padding: 14px; } }
 
 /* Steps */
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; counter-reset: s; }
@@ -431,6 +441,25 @@ footer p { max-width: 70ch; }
         <div><strong>US$260M</strong><span>en escenarios de EBITDA modelados</span></div>
         <div><strong>5 años</strong><span>de pro formas con fases de inversión en CAPEX</span></div>
         <div><strong>Excel + Python</strong><span>modelo editable y explicación de los resultados</span></div>
+      </div>
+
+      <div class="catalog" aria-labelledby="catalog-title">
+        <div class="catalog-head">
+          <p class="eyebrow">Catálogo</p>
+          <h3 id="catalog-title">Tipos de modelos que construyo</h3>
+        </div>
+        <ol class="mtypes">
+          <li><span class="i">01</span><b>3 estados financieros</b><span>Resultados, balance y flujo conectados, con escenarios.</span></li>
+          <li><span class="i">02</span><b>Valuación DCF</b><span>Valor de tu empresa por flujos descontados y WACC.</span></li>
+          <li><span class="i">03</span><b>Fusiones y adquisiciones (M&amp;A)</b><span>Efecto de una compra o fusión en utilidades y dilución.</span></li>
+          <li><span class="i">04</span><b>Levantamiento de capital</b><span>Cuánto levantar, uso de fondos, dilución y cap table.</span></li>
+          <li><span class="i">05</span><b>Compra apalancada (LBO)</b><span>Estructura de deuda y retorno (TIR, MoM) para el inversionista.</span></li>
+          <li><span class="i">06</span><b>Suma de las partes</b><span>Valor de cada unidad de negocio por separado.</span></li>
+          <li><span class="i">07</span><b>Consolidación</b><span>Varias empresas o sucursales en un solo estado financiero.</span></li>
+          <li><span class="i">08</span><b>Presupuesto</b><span>Presupuesto anual por área y seguimiento contra lo real.</span></li>
+          <li><span class="i">09</span><b>Proyección (forecast)</b><span>Ventas, costos y caja a 12–60 meses con supuestos claros.</span></li>
+          <li><span class="i">10</span><b>Valuación de opciones</b><span>Black-Scholes y binomial para opciones y derivados.</span></li>
+        </ol>
       </div>
 
       <div class="b2b-ctas">
